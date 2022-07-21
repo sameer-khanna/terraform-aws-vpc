@@ -159,7 +159,7 @@ resource "aws_vpc_endpoint" "gateway_endpoint" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "gateway_endpoint_rt_association" {
-  count           = length(var.service_name) > 0 && length(var.vpc_endpoint_type) > 0 ? 1 : 0
+  count           = length(var.service_name) > 0 ? 1 : 0
   route_table_id  = aws_route_table.private-rt[0].id
   vpc_endpoint_id = aws_vpc_endpoint.gateway_endpoint[0].id
 }
