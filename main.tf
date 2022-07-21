@@ -152,14 +152,14 @@ resource "aws_vpc_endpoint" "interface_endpoints" {
 }
 
 resource "aws_vpc_endpoint" "gateway_endpoint" {
-  count             = var.create_gateway_endpoint ? 1 : 0
+  count             = length(var.service_name) > 0 && length(var.vpc_endpoint_type) > 0 ? 1 : 0
   vpc_id            = aws_vpc.tf-project-vpc.id
   service_name      = var.service_name
   vpc_endpoint_type = var.vpc_endpoint_type
 }
 
 resource "aws_vpc_endpoint_route_table_association" "gateway_endpoint_rt_association" {
-  count           = var.create_gateway_endpoint ? 1 : 0
+  count           = length(var.service_name) > 0 && length(var.vpc_endpoint_type) > 0 ? 1 : 0
   route_table_id  = aws_route_table.private-rt[0].id
   vpc_endpoint_id = aws_vpc_endpoint.gateway_endpoint[0].id
 }

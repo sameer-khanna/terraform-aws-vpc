@@ -44,17 +44,14 @@ variable "availability_zone" {
   default = []
 }
 variable "service_name" {
-  default = "com.amazonaws.us-east-1.s3"
+  default = ""
 }
 variable "vpc_endpoint_type" {
-  default = "Gateway"
+  default = ""
 }
 variable "subnet_ids" {
   default = []
 }
-variable "create_gateway_endpoint" {
-  default = false
-}
 variable "vpc_name" {
-  default = "projectvpc"
+  default = "tf-project"
 }
